@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 export default()=>{
+    
 
     const [data, setdata] = useState([]);
 
@@ -21,7 +22,10 @@ export default()=>{
             setFrontEndTeam(res.data)
         });
     },[]);
-
+   
+    const deleteName = (id) => {
+        setFrontEndTeam([...frontEndTeam.filter((sin) => sin.id !== id)])
+    };
 
     const [frontEndTeam, setFrontEndTeam ]= useState([]);
 
@@ -29,13 +33,11 @@ export default()=>{
 
     const [deleteType, setDeleteType]=useState("")
 
-    const daleteByName = ()=>{
-        if(!deleteType || deleteType==="id1"){
-            setFrontEndTeam()
-        }
-
-
-    }
+    // const daleteByName = ()=>{
+    //     if(!deleteType || deleteType==="id1"){
+    //         setFrontEndTeam()
+    //     }
+    // }
 
 
     // const sortByNames = () => {
@@ -90,6 +92,7 @@ export default()=>{
             <td>{single.phone}</td>
             
  <td>{single.address}</td>
+ <button onClick={() => deleteName(single.id)}>delete</button>&nbsp;
             </tr>
             </tbody>
 
